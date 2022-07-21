@@ -1,0 +1,42 @@
+import random
+
+print("Enter the number of friends joining (including you):")
+how_many = int(input())
+
+if how_many <= 0:
+    print("No one is joining for the party")
+elif how_many > 0:
+        names = []
+        participants = how_many
+        print("Enter the name of every friend (including you), each on a new line:")
+        while how_many > 0:
+            names.append(input())
+            how_many -= 1
+
+        quest_lib = {}
+        print("Enter the total bill value:")
+        bill = float(input())
+        print('Do you want to use the "Who is lucky?" feature? Write Yes/No:')
+        answer = input()
+
+        if answer == "Yes":
+          winner = random.choice(names)
+
+          splitted_bill = bill / (participants - 1)
+        
+          quest_lib = quest_lib.fromkeys(names, round(splitted_bill, 2) )
+
+          quest_lib[winner] = 0
+          print("")
+          print("{} is the lucky one!".format(winner))
+          print("")
+          print(quest_lib) 
+          
+        else:
+          splitted_bill = bill / participants
+        
+          quest_lib = quest_lib.fromkeys(names, round(splitted_bill, 2) )
+          print("")
+          print("No one is going to be lucky")
+          print("")
+          print(quest_lib)   
